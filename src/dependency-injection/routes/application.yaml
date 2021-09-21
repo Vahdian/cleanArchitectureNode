@@ -1,0 +1,44 @@
+services:
+  Routes.RouteRepository:
+    class: ../../routes/infrastructure/persistence/MongoRouteRepository
+    arguments: ['@Shared.ConnectionManager']
+
+  Routes.RouteCreator:
+    class: ../../routes/application/create/RouteCreator
+    arguments: ['@Routes.RouteRepository']
+
+  Routes.CreateRouteCommandHandler:
+    class: ../../routes/application/create/CreateRouteCommandHandler
+    arguments: ['@Routes.RouteCreator']
+    tags:
+      - { name: 'commandHandler' }
+
+  Routes.RouteDeletion:
+    class: ../../routes/application/delete-one/RouteDeletion
+    arguments: ['@Routes.RouteRepository']
+
+  Routes.DeleteRouteCommandHandler:
+    class: ../../routes/application/delete-one/DeleteRouteCommandHandler
+    arguments: ['@Routes.RouteDeletion']
+    tags:
+      - { name: 'commandHandler' }
+
+  Routes.RoutesFinder:
+    class: ../../routes/application/search-all/RoutesFinder
+    arguments: ['@Routes.RouteRepository']
+
+  Routes.SearchAllRoutesQueryHandler:
+    class: ../../routes/application/search-all/SearchAllRoutesQueryHandler
+    arguments: ['@Routes.RoutesFinder']
+    tags:
+      - { name: 'queryHandler' }
+
+  Routes.RouteFinder:
+    class: ../../routes/application/search-one/RouteFinder
+    arguments: ['@Routes.RouteRepository']
+
+  Routes.SearchRouteQueryHandler:
+    class: ../../routes/application/search-one/SearchRouteQueryHandler
+    arguments: ['@Routes.RouteFinder']
+    tags:
+      - { name: 'queryHandler' }

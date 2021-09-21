@@ -1,0 +1,20 @@
+{
+  "eslint.validate": ["javascript", "typescript"],
+  "eslint.lintTask.enable": true,
+  "eslint.format.enable": true,
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports": true,
+    "source.fixAll.eslint": true
+  },
+  "editor.tabSize": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.quoteStyle": "single"
+}

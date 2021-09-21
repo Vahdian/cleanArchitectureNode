@@ -1,0 +1,5 @@
+imports:
+  - { resource: ./routes/application.yaml }
+  - { resource: ./programming-routes/application.yaml }
+  - { resource: ./endpoints/application.yaml }
+  - { resource: ./shared/application.yaml }

@@ -1,0 +1,40 @@
+services:
+  Shared.MongoConfig:
+    factory:
+      class: ../../shared/infrastructure/persistence/mongo/MongoConfigFactory
+      method: 'createConfig'
+
+  Shared.ConnectionManager:
+    arguments: ['routes', '@Shared.MongoConfig']
+    factory:
+      class: ../../shared/infrastructure/persistence/mongo/MongoClientFactory
+      method: 'createClient'
+
+  Shared.Logger:
+    class: ../../shared/infrastructure/WinstonLogger
+    arguments: []
+
+  # Shared.RabbitMqConfig:
+  #   factory:
+  #     class: ../shared/infrastructure/EventBus/RabbitMq/RabbitMqConfigFactory
+  #     method: 'createConfig'
+
+  # Shared.EventBus:
+  #   class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMq/RabbitMqEventBus
+  #   arguments: ['@Shared.RabbitMqConfig', '@Shared.Logger']
+
+  Shared.CommandHandlersInformation:
+    class: ../../shared/infrastructure/command-bus/CommandHandlersInformation
+    arguments: ['!tagged commandHandler']
+
+  Shared.CommandBus:
+    class: ../../shared/infrastructure/command-bus/InMemoryCommandBus
+    arguments: ['@Shared.CommandHandlersInformation']
+
+  Shared.QueryHandlersInformation:
+    class: ../../shared/infrastructure/query-bus/QueryHandlersInformation
+    arguments: ['!tagged queryHandler']
+
+  Shared.QueryBus:
+    class: ../../shared/infrastructure/query-bus/InMemoryQueryBus
+    arguments: ['@Shared.QueryHandlersInformation']

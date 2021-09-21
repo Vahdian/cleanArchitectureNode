@@ -1,0 +1,14 @@
+services:
+  ProgrammingRoutes.ProgrammingRouteRepository:
+    class: ../../programming-routes/infrastructure/persistence/MongoRouteRepository
+    arguments: ['@Shared.ConnectionManager']
+
+  ProgrammingRoutes.SearchAllProgrammingRoutesQueryHandler:
+    class: ../../programming-routes/application/search-all/SearchAllProgrammingRoutesQueryHandler
+    arguments: ['@ProgrammingRoutes.ProgrammingRoutesFinder']
+    tags:
+      - { name: 'queryHandler' }
+
+  ProgrammingRoutes.ProgrammingRoutesFinder:
+    class: ../../programming-routes/application/search-all/ProgrammingRoutesFinder
+    arguments: ['@ProgrammingRoutes.ProgrammingRouteRepository']

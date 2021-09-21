@@ -1,0 +1,24 @@
+services:
+  Controllers.RoutesGetController:
+    class: ../../controllers/RoutesGetController
+    arguments: ['@Shared.QueryBus']
+
+  Controllers.RouteGetController:
+    class: ../../controllers/RouteGetController
+    arguments: ['@Shared.QueryBus']
+
+  Controllers.RoutePutController:
+    class: ../../controllers/RoutePutController
+    arguments: ['@Shared.CommandBus']
+
+  Controllers.RouteDeleteController:
+    class: ../../controllers/RouteDeleteController
+    arguments: ['@Shared.CommandBus']
+
+  Controllers.ProgrammingRoutesGetController:
+    class: ../../controllers/ProgrammingRoutesGetController
+    arguments: ['@Shared.QueryBus']
+
+  Controllers.ProgrammingRoutePostController:
+    class: ../../controllers/ProgrammingRoutePostController
+    arguments: ['@Shared.CommandBus']
